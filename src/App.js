@@ -1,37 +1,25 @@
 import React, { Component } from "react";
 
-import axios from "axios";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Interface from "./components/Interface";
 
 import styles from "./styles/App.module.css";
 
 class App extends Component {
-  state = {};
-
-  async componentDidMount() {
-    const response = await axios.get(
-      "https://thesimpsonsquoteapi.glitch.me/quotes?count=50"
-    );
-
-    console.log(response);
-  }
-
   render() {
     return (
-      <>
+      <div className={styles.container}>
         <header>
-          <img src="the_simpsons.png" alt="The Simpsons" />
+          <Header />
         </header>
         <main>
-          <section className={styles.simpsonsLogo}></section>
-          <section className={styles.tvContainer}>
-            <img src="static-noise.jpg" />
-          </section>
+          <Interface />
         </main>
-
         <footer>
-          <p>&copy; Gonzalo Baez 2024</p>
+          <Footer />
         </footer>
-      </>
+      </div>
     );
   }
 }

@@ -1,4 +1,4 @@
-body > div {
+.container {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -7,37 +7,8 @@ body > div {
   justify-content: space-between;
 }
 
-main {
-  width: 100vw;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-main section {
-  text-align: center;
-}
-
-.simpsonsLogo img {
-  width: 100vw;
-  max-width: 500px;
-}
-
-.tvContainer {
-  height: 100%;
-  width: 100%;
-  background-image: url("../assets/the-simpsons-tv.svg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  mask-image: url("../assets/tv-screen2.svg");
-  mask-position: center;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-}
-
-.tv img {
-  height: 100vh;
+header,
+main,
+footer {
+  flex: 0 0;
 }

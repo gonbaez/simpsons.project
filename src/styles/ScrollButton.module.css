@@ -1,0 +1,10 @@
+.scrollButton {
+  background-color: #fefb1e;
+  height: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: -4px 3px #000;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+}

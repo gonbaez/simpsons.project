@@ -1,0 +1,2 @@
+Characters.jsx @~12 element descomposition, how to include onLike function
+Character.jsx @~24 cant add onClick to custom component?

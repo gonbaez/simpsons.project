@@ -1,0 +1,37 @@
+:root {
+  --item-width: 500px;
+}
+
+.characterListItem {
+  display: flex;
+  list-style: none;
+  width: var(--item-width);
+  flex-grow: 0;
+  flex-shrink: 0;
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 80%;
+  margin: 20px;
+  justify-content: space-around;
+  position: relative;
+  scroll-snap-align: center;
+  scroll-padding: 100px;
+}
+
+.characterContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.left {
+  order: 1;
+}
+
+.characterImage {
+  height: 100%;
+}
+
+.quote {
+  color: red;
+}
