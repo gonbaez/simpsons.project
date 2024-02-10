@@ -10,16 +10,20 @@ class Controls extends Component {
   render() {
     return (
       <>
-        <div>
+        <div className={styles.controlsContainer}>
           <input
             className={styles.searchInput}
             type="text"
             placeholder="Search character"
             onInput={this.props.onSearch}
           />
-          <div>
-            <IoMdHeart /> {this.props.likes}
-            <FaUser /> {this.props.characters}
+          <div className={styles.counterContainer}>
+            <div className={styles.likesContainer}>
+              <IoMdHeart /> <span>{this.props.likes}</span>
+            </div>
+            <div className={styles.characterContainer}>
+              <FaUser /> <span>{this.props.characters}</span>
+            </div>
           </div>
         </div>
       </>

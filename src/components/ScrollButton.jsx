@@ -14,6 +14,22 @@ class ScrollButtom extends Component {
         <button
           onClick={() => {
             scrollingElementRef.scrollLeft += scrollDistance;
+
+            const elem = document.querySelector("ul");
+            const halfWidth = window.innerHeight / 2;
+            const halfHeight = window.innerWidth / 2;
+
+            Array.from(elem.children).forEach((el) => {
+              if (el.nodeName === "LI") {
+                const rect = el.getBoundingClientRect();
+
+                el.classList.remove("center");
+
+                if (Math.abs(rect.left + rect.width / 2 - halfHeight) < 50) {
+                  el.classList.add("center");
+                }
+              }
+            });
           }}
           className={styles.scrollButton}
           style={direction === "left" ? { left: "10%" } : { right: "10%" }}
