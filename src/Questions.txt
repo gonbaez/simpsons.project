@@ -1,2 +1,4 @@
 Characters.jsx @~12 element descomposition, how to include onLike function
 Character.jsx @~24 cant add onClick to custom component?
+ScrollButton is a state component, is it done correctly? If I dont do it in mounr scrolling element ref sometimes doesnt exist. What other way would I do it?
+On scroll. I en up importing the character styles in interface which seems incorrect, what would be the best way of doing it? Should i be added to the state? How do I get the element of the array? do I invent a prop?

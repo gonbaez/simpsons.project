@@ -1,37 +1,106 @@
+@font-face {
+  font-family: "Simpsons";
+  src: url("../assets/Simpsonfont.otf") format("opentype");
+}
+
 :root {
   --item-width: 500px;
 }
 
 .characterListItem {
-  display: flex;
   list-style: none;
-  width: var(--item-width);
-  flex-grow: 0;
-  flex-shrink: 0;
-  border: 1px solid black;
-  border-radius: 20px;
-  height: 80%;
   margin: 20px;
+  max-width: var(--item-width);
+
+  display: flex;
+  flex-direction: column;
+
   justify-content: space-around;
+
   position: relative;
+
   scroll-snap-align: center;
   scroll-padding: 100px;
+
+  flex-shrink: 0;
+
+  /* border: 1px solid black;
+  border-radius: 20px; */
 }
 
 .characterContent {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  width: 50%;
+}
+
+.characterContent div {
+  margin-bottom: 20px;
+}
+
+.characterFeedbackContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .left {
   order: 1;
 }
 
-.characterImage {
-  height: 100%;
+.imageContainer {
+  align-self: flex-end;
 }
 
-.quote {
-  color: red;
+/* CENTER CHARACTER */
+.characterListItem.center {
+  max-width: 75vw;
+  min-width: 50vw;
+}
+
+.characterListItem.center .characterImage {
+  width: -webkit-fill-available;
+}
+
+.characterListItem.center .characterName {
+  font-family: "Simpsons";
+  font-size: 2rem;
+  text-align: center;
+}
+
+.characterListItem.center .quote {
+  text-align: center;
+  font-style: italic;
+}
+
+.characterListItem.center .quote svg {
+  margin: 0 20px;
+}
+
+/* NON CENTER CHARACTER */
+.characterListItem:not(.center) {
+  align-items: end;
+}
+
+.characterListItem:not(.center) .characterName,
+.characterListItem:not(.center) .quote,
+.characterListItem:not(.center) .characterFeedbackContainer {
+  display: none;
+}
+
+.characterListItem:not(.center) .characterImage {
+  max-height: 25vh;
+}
+
+@media screen and (min-width: 650px) {
+  .characterListItem {
+    flex-direction: row;
+  }
+
+  .characterListItem.center {
+    max-width: var(--item-width);
+  }
 }

@@ -1,7 +1,7 @@
 .characterList {
   display: flex;
   width: 100vw;
-  height: 40vh;
+  height: 100%;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -11,4 +11,11 @@
 .emptyListItem {
   flex-shrink: 0;
   width: calc(100vw - var(--item-width) / 2);
+}
+
+.refreshButton {
+  margin-bottom: 50vh;
+  height: 4rem;
+  width: 4rem;
+  cursor: pointer;
 }

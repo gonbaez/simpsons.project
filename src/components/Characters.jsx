@@ -5,11 +5,25 @@ import styles from "../styles/Characters.module.css";
 import Character from "./Character";
 import ScrollButtom from "./ScrollButton";
 
+import { IoRefreshCircle } from "react-icons/io5";
+
 class Characters extends Component {
   render() {
-    const { data, onLike, onDelete, onDeleteConfirm } = this.props;
+    const { data, onLike, onDelete, onDeleteConfirm, onScroll, onRefresh } =
+      this.props;
 
     // element descomposition, how to include onLike function
+
+    if (!data.length) {
+      return (
+        <>
+          <IoRefreshCircle
+            onClick={() => onRefresh()}
+            className={styles.refreshButton}
+          />
+        </>
+      );
+    }
 
     return (
       <>
@@ -17,7 +31,12 @@ class Characters extends Component {
           direction="left"
           scrollingElement={styles.characterList}
         />
-        <ul className={styles.characterList}>
+        <ul
+          className={styles.characterList}
+          onScroll={() => {
+            onScroll(styles.characterList);
+          }}
+        >
           <div className={styles.emptyListItem}></div>
           {data.map((element) => {
             return (
@@ -26,6 +45,7 @@ class Characters extends Component {
                 onLike={onLike}
                 onDelete={onDelete}
                 onDeleteConfirm={onDeleteConfirm}
+                key={element.id}
               />
             );
           })}

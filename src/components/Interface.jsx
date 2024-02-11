@@ -6,6 +6,7 @@ import Controls from "./Controls";
 import Characters from "./Characters";
 
 import styles from "../styles/Interface.module.css";
+import characterStyles from "../styles/Character.module.css";
 
 class Interface extends Component {
   state = {};
@@ -28,7 +29,7 @@ class Interface extends Component {
   };
 
   componentDidMount() {
-    this.getQuotes();
+    this.getQuotes(15);
   }
 
   onLike = (e) => {
@@ -72,6 +73,27 @@ class Interface extends Component {
     this.setState({ filter: e.target.value });
   };
 
+  onScroll = (e) => {
+    const elem = document.querySelector(`.${e}`);
+    const halfWidth = window.innerWidth / 2;
+
+    Array.from(elem.children).forEach((el) => {
+      if (el.nodeName === "LI") {
+        const rect = el.getBoundingClientRect();
+
+        el.classList.remove(characterStyles.center);
+        if (Math.abs(rect.left + rect.width / 2 - halfWidth) < 50) {
+          el.classList.add(characterStyles.center);
+        }
+      }
+    });
+  };
+
+  onRefresh = () => {
+    this.setState({ data: null });
+    this.getQuotes(30);
+  };
+
   render() {
     if (!this.state.data) {
       return <LoadingComponent />;
@@ -102,6 +124,8 @@ class Interface extends Component {
             onLike={this.onLike}
             onDelete={this.onDelete}
             onDeleteConfirm={this.onDeleteConfirm}
+            onScroll={this.onScroll}
+            onRefresh={this.onRefresh}
           />
         </div>
       </>

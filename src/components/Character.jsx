@@ -4,6 +4,9 @@ import styles from "../styles/Character.module.css";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 
+import { FaQuoteLeft } from "react-icons/fa6";
+import { FaQuoteRight } from "react-icons/fa6";
+
 class Character extends Component {
   state = {};
 
@@ -28,9 +31,13 @@ class Character extends Component {
             styles[characterDirection.toLowerCase()]
           }`}
         >
-          <p className={styles.characterName}>{character}</p>
-          <div className={styles.quote}>{quote}</div>
-          <div>
+          <div className={styles.characterName}>{character}</div>
+          <div className={styles.quote}>
+            <FaQuoteLeft />
+            {quote}
+            <FaQuoteRight />
+          </div>
+          <div className={styles.characterFeedbackContainer}>
             <LikeButton onLike={onLike} like={like} id={id} />
             <DeleteButton
               onDelete={onDelete}
@@ -40,7 +47,9 @@ class Character extends Component {
             />
           </div>
         </div>
-        <img className={styles.characterImage} src={image} alt={character} />
+        <div className={styles.imageContainer}>
+          <img className={styles.characterImage} src={image} alt={character} />
+        </div>
       </li>
     );
   }

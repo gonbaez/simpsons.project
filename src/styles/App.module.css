@@ -8,7 +8,16 @@
 }
 
 header,
-main,
 footer {
   flex: 0 0;
+}
+
+main {
+  flex: 1 0;
+  max-height: 75vh;
+}
+
+body {
+  background-image: url("../assets/clouds.jpg");
+  background-size: cover;
 }

@@ -3,33 +3,30 @@ import React, { Component } from "react";
 import styles from "../styles/ScrollButton.module.css";
 
 class ScrollButtom extends Component {
-  render() {
-    const { direction, scrollingElement } = this.props;
+  state = { scrollingElementRef: null };
 
-    const scrollingElementRef = document.querySelector(`.${scrollingElement}`);
-    const scrollDistance = direction === "left" ? -500 : 500;
+  componentDidMount() {
+    const scrollingElementRef = document.querySelector(
+      `.${this.props.scrollingElement}`
+    );
+
+    this.setState({ scrollingElementRef });
+  }
+
+  render() {
+    const { direction } = this.props;
 
     return (
       <>
         <button
           onClick={() => {
+            const { scrollingElementRef } = this.state;
+            const viewWidth = window.innerWidth;
+            const scrollDistance =
+              direction === "left"
+                ? -Math.min(viewWidth / 3, 500)
+                : Math.min(viewWidth / 3, 500);
             scrollingElementRef.scrollLeft += scrollDistance;
-
-            const elem = document.querySelector("ul");
-            const halfWidth = window.innerHeight / 2;
-            const halfHeight = window.innerWidth / 2;
-
-            Array.from(elem.children).forEach((el) => {
-              if (el.nodeName === "LI") {
-                const rect = el.getBoundingClientRect();
-
-                el.classList.remove("center");
-
-                if (Math.abs(rect.left + rect.width / 2 - halfHeight) < 50) {
-                  el.classList.add("center");
-                }
-              }
-            });
           }}
           className={styles.scrollButton}
           style={direction === "left" ? { left: "10%" } : { right: "10%" }}
