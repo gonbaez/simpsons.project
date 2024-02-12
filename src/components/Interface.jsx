@@ -8,6 +8,8 @@ import Characters from "./Characters";
 import styles from "../styles/Interface.module.css";
 import characterStyles from "../styles/Character.module.css";
 
+import offlineData from "../offlineData.json";
+
 class Interface extends Component {
   state = {};
 
@@ -15,8 +17,14 @@ class Interface extends Component {
     const response = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=${count}${
         character ? "&character=" + character : ""
-      }`
+      }`,
+      { timeout: 10000 }
     );
+
+    if (!response.data.length) {
+      console.log("Using offline data");
+      response.data = offlineData;
+    }
 
     response.data.map((el, idx) => {
       el.like = false;

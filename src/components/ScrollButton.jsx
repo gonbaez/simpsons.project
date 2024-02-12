@@ -22,6 +22,14 @@ class ScrollButtom extends Component {
           onClick={() => {
             const { scrollingElementRef } = this.state;
             const viewWidth = window.innerWidth;
+            const viewHeight = window.innerHeight;
+
+            const middleElement = document.elementFromPoint(
+              viewWidth / 2,
+              viewHeight / 2
+            );
+
+            console.log(middleElement);
             const scrollDistance =
               direction === "left"
                 ? -Math.min(viewWidth / 3, 500)
