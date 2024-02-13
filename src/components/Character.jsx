@@ -26,11 +26,7 @@ class Character extends Component {
 
     return (
       <li className={styles.characterListItem}>
-        <div
-          className={`${styles.characterContent} ${
-            styles[characterDirection.toLowerCase()]
-          }`}
-        >
+        <div className={styles.characterContent}>
           <div className={styles.characterName}>{character}</div>
           <div className={styles.quote}>
             <FaQuoteLeft />
@@ -47,7 +43,11 @@ class Character extends Component {
             />
           </div>
         </div>
-        <div className={styles.imageContainer}>
+        <div
+          className={`${styles.imageContainer} ${
+            styles[characterDirection.toLowerCase()]
+          }`}
+        >
           <img className={styles.characterImage} src={image} alt={character} />
         </div>
       </li>

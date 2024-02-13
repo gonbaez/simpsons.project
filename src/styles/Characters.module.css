@@ -1,6 +1,7 @@
 .characterList {
   display: flex;
   width: 100vw;
+  /* This makes the character list take all the sapce inside interface */
   height: 100%;
   overflow: hidden;
   margin: 0;

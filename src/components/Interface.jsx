@@ -10,6 +10,10 @@ import characterStyles from "../styles/Character.module.css";
 
 import offlineData from "../offlineData.json";
 
+import { searchSchema } from "../functions/validationSchemas.js";
+
+import Joi from "joi";
+
 class Interface extends Component {
   state = {};
 
@@ -17,8 +21,8 @@ class Interface extends Component {
     const response = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=${count}${
         character ? "&character=" + character : ""
-      }`,
-      { timeout: 10000 }
+      }`
+      // { timeout: 10000 }
     );
 
     if (!response.data.length) {
@@ -77,8 +81,17 @@ class Interface extends Component {
     this.setState({ data });
   };
 
-  onSearch = (e) => {
-    this.setState({ filter: e.target.value });
+  onSearch = async (e) => {
+    const _joiInstance = Joi.object(searchSchema);
+
+    try {
+      await _joiInstance.validateAsync({ "Search string": e.target.value });
+    } catch (e) {
+      this.setState({ searchError: e.details[0].message });
+      return;
+    }
+
+    this.setState({ filter: e.target.value, searchError: null });
   };
 
   onScroll = (e) => {
@@ -126,6 +139,7 @@ class Interface extends Component {
             onSearch={this.onSearch}
             likes={likes}
             characters={data.length}
+            searchError={this.state.searchError}
           />
           <Characters
             data={data}
@@ -134,6 +148,7 @@ class Interface extends Component {
             onDeleteConfirm={this.onDeleteConfirm}
             onScroll={this.onScroll}
             onRefresh={this.onRefresh}
+            nonFilteredDataLength={this.state.data.length}
           />
         </div>
       </>

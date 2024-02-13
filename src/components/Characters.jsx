@@ -6,15 +6,23 @@ import Character from "./Character";
 import ScrollButtom from "./ScrollButton";
 
 import { IoRefreshCircle } from "react-icons/io5";
+import { LuSearchX } from "react-icons/lu";
 
 class Characters extends Component {
   render() {
-    const { data, onLike, onDelete, onDeleteConfirm, onScroll, onRefresh } =
-      this.props;
+    const {
+      data,
+      onLike,
+      onDelete,
+      onDeleteConfirm,
+      onScroll,
+      onRefresh,
+      nonFilteredDataLength,
+    } = this.props;
 
     // element descomposition, how to include onLike function
 
-    if (!data.length) {
+    if (!nonFilteredDataLength) {
       return (
         <>
           <IoRefreshCircle
@@ -22,6 +30,15 @@ class Characters extends Component {
             className={styles.refreshButton}
           />
         </>
+      );
+    }
+
+    if (!data.length) {
+      return (
+        <LuSearchX
+          style={{ cursor: "initial" }}
+          className={styles.refreshButton}
+        />
       );
     }
 

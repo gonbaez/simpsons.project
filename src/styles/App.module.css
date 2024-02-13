@@ -13,11 +13,11 @@ footer {
 }
 
 main {
-  flex: 1 0;
-  max-height: 75vh;
+  /* This makes main take up the space not used by header and footer */
+  height: 100%;
 }
 
-/* body {
+body {
   background-image: url("../assets/clouds.jpg");
   background-size: cover;
-} */
+}

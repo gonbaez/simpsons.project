@@ -21,19 +21,32 @@ class ScrollButtom extends Component {
         <button
           onClick={() => {
             const { scrollingElementRef } = this.state;
+
             const viewWidth = window.innerWidth;
             const viewHeight = window.innerHeight;
 
-            const middleElement = document.elementFromPoint(
+            let middleElement = document.elementFromPoint(
               viewWidth / 2,
-              viewHeight / 2
+              (viewHeight * 2) / 3
             );
 
-            console.log(middleElement);
+            // Get list item
+            while (middleElement.tagName !== "LI") {
+              middleElement = middleElement.parentElement;
+            }
+
+            const middleRect = middleElement.getBoundingClientRect();
+
+            const prevSibling = middleElement.previousElementSibling;
+            const nextSibling = middleElement.nextElementSibling;
+
+            const prevRect = prevSibling.getBoundingClientRect();
+            const nextRect = nextSibling.getBoundingClientRect();
+
             const scrollDistance =
               direction === "left"
-                ? -Math.min(viewWidth / 3, 500)
-                : Math.min(viewWidth / 3, 500);
+                ? prevRect.left - middleRect.left
+                : nextRect.right - middleRect.right;
             scrollingElementRef.scrollLeft += scrollDistance;
           }}
           className={styles.scrollButton}

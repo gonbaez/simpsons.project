@@ -6,6 +6,18 @@
   padding-left: 10px;
 }
 
+.error {
+  outline: 5px solid red;
+}
+
+.errorMessage {
+  position: absolute;
+  color: red;
+  font-size: smaller;
+  left: 0;
+  top: -2rem;
+  text-align: center;
+}
 .controlsContainer {
   display: flex;
   flex-direction: column;
