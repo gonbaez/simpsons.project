@@ -17,11 +17,9 @@ import Joi from "joi";
 class Interface extends Component {
   state = {};
 
-  getQuotes = async (character, count = 15) => {
+  getQuotes = async (count = 15) => {
     const response = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=${count}${
-        character ? "&character=" + character : ""
-      }`
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=${count}`
       // { timeout: 10000 }
     );
 
@@ -41,7 +39,7 @@ class Interface extends Component {
   };
 
   componentDidMount() {
-    this.getQuotes(15);
+    this.getQuotes(50);
   }
 
   onLike = (e) => {

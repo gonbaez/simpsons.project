@@ -17,6 +17,7 @@
   left: 0;
   top: -2rem;
   text-align: center;
+  right: 0;
 }
 .controlsContainer {
   display: flex;

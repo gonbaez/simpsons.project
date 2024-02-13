@@ -4,7 +4,7 @@ import { IoMdHeart } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 
 import styles from "../styles/Controls.module.css";
-import classNames from "classnames";
+// import classNames from "classnames";
 
 class Controls extends Component {
   render() {
