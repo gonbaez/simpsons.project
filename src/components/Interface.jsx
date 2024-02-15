@@ -17,7 +17,7 @@ import Joi from "joi";
 class Interface extends Component {
   state = {};
 
-  getQuotes = async (count = 15) => {
+  getQuotes = async (count = 50) => {
     const response = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=${count}`
       // { timeout: 10000 }
@@ -29,9 +29,9 @@ class Interface extends Component {
     }
 
     response.data.map((el, idx) => {
-      el.like = false;
+      // el.like = false;
       el.id = idx;
-      el.deleteConfirm = false;
+      // el.deleteConfirm = false;
       return el;
     });
 
@@ -39,7 +39,7 @@ class Interface extends Component {
   };
 
   componentDidMount() {
-    this.getQuotes(50);
+    this.getQuotes();
   }
 
   onLike = (e) => {
@@ -93,7 +93,7 @@ class Interface extends Component {
   };
 
   onScroll = (e) => {
-    const elem = document.querySelector(`.${e}`);
+    const elem = document.querySelector(`${e}`);
     const halfWidth = window.innerWidth / 2;
 
     Array.from(elem.children).forEach((el) => {

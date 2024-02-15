@@ -7,8 +7,15 @@ import ScrollButtom from "./ScrollButton";
 
 import { IoRefreshCircle } from "react-icons/io5";
 import { LuSearchX } from "react-icons/lu";
+import { FaSupple } from "react-icons/fa6";
 
 class Characters extends Component {
+  constructor() {
+    super();
+
+    this.myRef = React.createRef();
+  }
+
   render() {
     const {
       data,
@@ -46,13 +53,17 @@ class Characters extends Component {
       <>
         <ScrollButtom
           direction="left"
-          scrollingElement={styles.characterList}
+          // scrollingElement={styles.characterList}
+          scrollingElement={"ul"}
+          scrollingRef={this.myRef}
         />
         <ul
           className={styles.characterList}
           onScroll={() => {
-            onScroll(styles.characterList);
+            // onScroll(styles.characterList);
+            onScroll("ul");
           }}
+          ref={this.myRef}
         >
           <div className={styles.emptyListItem}></div>
           {data.map((element) => {
@@ -70,7 +81,9 @@ class Characters extends Component {
         </ul>
         <ScrollButtom
           direction="right"
-          scrollingElement={styles.characterList}
+          // scrollingElement={styles.characterList}
+          scrollingElement={"ul"}
+          scrollingRef={this.myRef}
         />
       </>
     );

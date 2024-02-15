@@ -5,13 +5,13 @@ import styles from "../styles/ScrollButton.module.css";
 class ScrollButtom extends Component {
   state = { scrollingElementRef: null };
 
-  componentDidMount() {
-    const scrollingElementRef = document.querySelector(
-      `.${this.props.scrollingElement}`
-    );
+  // componentDidMount() {
+  //   const scrollingElementRef = document.querySelector(
+  //     `${this.props.scrollingElement}`
+  //   );
 
-    this.setState({ scrollingElementRef });
-  }
+  //   this.setState({ scrollingElementRef });
+  // }
 
   render() {
     const { direction } = this.props;
@@ -20,7 +20,7 @@ class ScrollButtom extends Component {
       <>
         <button
           onClick={() => {
-            const { scrollingElementRef } = this.state;
+            // const { scrollingElementRef } = this.state;
 
             const viewWidth = window.innerWidth;
             const viewHeight = window.innerHeight;
@@ -47,7 +47,7 @@ class ScrollButtom extends Component {
               direction === "left"
                 ? prevRect.left - middleRect.left
                 : nextRect.right - middleRect.right;
-            scrollingElementRef.scrollLeft += scrollDistance;
+            this.props.scrollingRef.current.scrollLeft += scrollDistance;
           }}
           className={styles.scrollButton}
           style={direction === "left" ? { left: "10%" } : { right: "10%" }}
